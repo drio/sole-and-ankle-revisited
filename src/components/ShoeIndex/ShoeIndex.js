@@ -1,13 +1,23 @@
-import React from "react";
-import styled from "styled-components/macro";
+import React from 'react';
+import styled from 'styled-components/macro';
 
-import { WEIGHTS, QUERIES } from "../../constants";
+import { QUERIES, WEIGHTS } from '../../constants';
 
-import Breadcrumbs from "../Breadcrumbs";
-import Select from "../Select";
-import Spacer from "../Spacer";
-import ShoeSidebar from "../ShoeSidebar";
-import ShoeGrid from "../ShoeGrid";
+import Breadcrumbs from '../Breadcrumbs';
+import Select from '../Select';
+import Spacer from '../Spacer';
+import ShoeSidebar from '../ShoeSidebar';
+import ShoeGrid from '../ShoeGrid';
+
+const ShoeBreadcrumbs = () => {
+  return (
+    <Breadcrumbs>
+      <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
+    </Breadcrumbs>
+  );
+};
 
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
@@ -15,13 +25,13 @@ const ShoeIndex = ({ sortId, setSortId }) => {
       <MainColumn>
         <Header>
           <div>
-            <MobileBreadCrumbs>
-              <ShoeBreadCrumbs />
-            </MobileBreadCrumbs>
+            <MobileBreadcrumbs>
+              <ShoeBreadcrumbs />
+            </MobileBreadcrumbs>
             <Title>Running</Title>
           </div>
 
-          <SortFilterAndWrapper>
+          <SortFilterWrapper>
             <Select
               label="Sort"
               value={sortId}
@@ -30,15 +40,15 @@ const ShoeIndex = ({ sortId, setSortId }) => {
               <option value="newest">Newest Releases</option>
               <option value="price">Price</option>
             </Select>
-          </SortFilterAndWrapper>
+          </SortFilterWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <DesktopBreadCrumbs>
-          <ShoeBreadCrumbs />
-        </DesktopBreadCrumbs>
+        <DesktopBreadcrumbs>
+          <ShoeBreadcrumbs />
+        </DesktopBreadcrumbs>
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -80,21 +90,12 @@ const Title = styled.h2`
   font-weight: ${WEIGHTS.medium};
 `;
 
-const ShoeBreadCrumbs = () => (
-  <Breadcrumbs>
-    <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-    <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-    <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-  </Breadcrumbs>
-);
-
-const DesktopBreadCrumbs = styled.div`
+const DesktopBreadcrumbs = styled.div`
   @media ${QUERIES.tabletAndSmaller} {
     display: none;
   }
 `;
-
-const MobileBreadCrumbs = styled.div`
+const MobileBreadcrumbs = styled.div`
   display: none;
 
   @media ${QUERIES.tabletAndSmaller} {
@@ -102,7 +103,7 @@ const MobileBreadCrumbs = styled.div`
   }
 `;
 
-const SortFilterAndWrapper = styled.div`
+const SortFilterWrapper = styled.div`
   @media ${QUERIES.phoneAndSmaller} {
     display: none;
   }
